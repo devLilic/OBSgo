@@ -1,0 +1,14 @@
+import type { PreloadModule } from '../../../src/shared/modules/contracts'
+import { registerDatabaseApi } from './databaseApi'
+
+export function createDatabaseApiPreloadModule(): PreloadModule {
+  return {
+    id: 'database-api',
+    isEnabled(config) {
+      return config.features.database && config.database.enabled
+    },
+    register() {
+      registerDatabaseApi()
+    },
+  }
+}
